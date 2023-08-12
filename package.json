@@ -1,0 +1,38 @@
+{
+  "name": "hexo-neodb",
+  "version": "0.0.1",
+  "description": "Generate neodb pages of books , movies and games for Hexo.",
+  "main": "index",
+  "scripts": {},
+  "dependencies": {
+    "ejs": "3.1.7",
+    "hexo-fs": "4.1.1",
+    "hexo-i18n": "1.0.0",
+    "hexo-log": "3.2.0",
+    "path": "^0.12.7",
+    "urllib": "^3.5.0",
+    "diagnostics_channel": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lesslsmore/hexo-neodb.git"
+  },
+  "keywords": [
+    "generator",
+    "plugin",
+    "books",
+    "movies",
+    "hexo",
+    "neodb"
+  ],
+  "author": "lesslsmore",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-hexo": "^1.0.2"
+  },
+  "bugs": {
+    "url": "https://github.com/lesslsmore/hexo-neodb/issues"
+  },
+  "homepage": "https://github.com/lesslsmore/hexo-neodb/"
+}
