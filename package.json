@@ -1,6 +1,6 @@
 {
   "name": "hexo-neodb",
-  "version": "0.0.1",
+  "version": "0.1.4",
   "description": "Generate neodb pages of books , movies and games for Hexo.",
   "main": "index",
   "scripts": {},

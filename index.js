@@ -6,7 +6,7 @@ const log = require('./lib/util').log
 
 let init_from_console = false
 
-const supported_types = ['book', 'movie', 'game', 'song']
+const supported_types = ['book','movie','tv','music','game']
 
 // Register `hexo g` and `hexo s`
 supported_types.forEach(supported_type => {
@@ -30,7 +30,8 @@ const options = {
         {name: '-b, --books', desc: 'Generate neodb books only'},
         {name: '-m, --movies', desc: 'Generate neodb movies only'},
         {name: '-g, --games', desc: 'Generate neodb games only'},
-        {name: '-s, --songs', desc: 'Generate neodb songs only'}
+        {name: '-s, --musics', desc: 'Generate neodb musics only'},
+        {name: '-t, --tvs', desc: 'Generate neodb tvs only'}
     ]
 }
 
@@ -43,8 +44,8 @@ hexo.extend.console.register('neodb', 'Generate pages from neodb', options, func
         log.info("No neodb config specified")
         return
     }
-    if (!this.config.neodb.id) {
-        log.info("No neodb id specified")
+    if (!this.config.neodb.token) {
+        log.info("No neodb token specified")
         return
     }
 
