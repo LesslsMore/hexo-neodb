@@ -10,8 +10,13 @@
 
 ## 原理
 
-hexo-neodb 目前升级到了 0.x 版本，
-将原先由插件客户端自行获取数据的逻辑抽到了一个隐藏的服务端中进行，以统一解决数据获取、数据缓存、风控对抗等问题，提高页面生成的成功率和效率。
+hexo-neodb 参考 https://github.com/mythsman/hexo-douban 开发
+
+由于豆瓣评论被删，因此转战 [neodb](https://neodb.social/) 作为替代。
+
+neodb 支持豆瓣数据导入，开源并开放 api 
+
+通过 https://neodb.social/developer/ 可生成 token 对 api 进行访问
 
 ## 安装
 
@@ -25,7 +30,7 @@ $ npm install hexo-neodb --save
 
 ``` yaml
 neodb:
-  token: 'xxxxxxxxx'
+  token: '填入之前生成的 token'
   builtin: false
   item_per_page: 10
   meta_max_line: 4
@@ -47,27 +52,16 @@ neodb:
     option:
   music:
     path: musics/index.html
-    title: 'This is my song title'
-    quote: 'This is my song quote'
+    title: 'This is my music title'
+    quote: 'This is my music quote'
     option:
   tv:
     path: tvs/index.html
-    title: 'This is my song title'
-    quote: 'This is my song quote'
+    title: 'This is my tv title'
+    quote: 'This is my tv quote'
     option:
   timeout: 10000 
 ```
-
-- **id**: 你的 neodb token。获取方法可以参考[怎样获取 neodb 的 token ？](https://www.zhihu.com/question/19634899)
-- **builtin**: 是否将`hexo neodb`命令默认嵌入进`hexo g`、`hexo s`，使其自动执行`hexo neodb` 命令。默认关闭。当你的 neodb 条目较多时，也建议关闭。
-- **item_per_page**: 每页展示的条目数，默认 10 。
-- **meta_max_line**: 每个条目展示的详细信息的最大行数，超过该行数则会以 "..." 省略，默认 4 。
-- **customize_layout**: 自定义布局文件。默认值为 page 。无特别需要，留空即可。若配置为 `abcd`，则表示指定 `//theme/hexo-theme/layout/abcd.ejs` 文件渲染 neodb 页面。
-- **path**: 生成页面后的路径，默认生成在 //yourblog/books/index.html 等下面。如需自定义路径，则可以修改这里。
-- **title**: 该页面的标题。
-- **quote**: 写在页面开头的一段话,支持html语法。
-- **timeout**: 爬取数据的超时时间，默认是 10000ms ,如果在使用时发现报了超时的错(ETIMEOUT)可以把这个数据设置的大一点。
-- **option**: 该页面额外的 Front-matter 配置，参考[Hexo 文档](https://hexo.io/docs/front-matter.html)。无特别需要，留空即可。
 
 如果只想显示某一个页面(比如movie)，那就把其他的配置项注释掉即可。
 
@@ -86,10 +80,15 @@ Options:
   -b, --books   Generate neodb books only
   -g, --games   Generate neodb games only
   -m, --movies  Generate neodb movies only
-  -s, --songs   Generate neodb songs only
+  -s, --musics   Generate neodb songs only
+  -t, --tvs   Generate neodb songs only
 ```
 
 **主动生成 neodb 页面**
+
+中途报错，不影响生成结果，只是会缺失几条。
+
+默认采用了 7890 端口代理访问，国内访问 api 不太顺畅
 
 ```
 $ hexo neodb
@@ -101,21 +100,14 @@ INFO  30 (wishlist), 0 (progress),6105 (complete) movie loaded in 4129 ms
 INFO  Generated: books/index.html
 INFO  Generated: movies/index.html
 INFO  Generated: games/index.html
-INFO  Generated: songs/index.html
+INFO  Generated: musics/index.html
+INFO  Generated: tvs/index.html
 ```
 
-如果不加参数，那么默认参数为`-bgms`。当然，前提是配置文件中均有这些类型的配置。
+如果不加参数，那么默认参数为`-bgmst`。当然，前提是配置文件中均有这些类型的配置。
 
 **需要注意的是**，通常大家都喜欢用`hexo d`来作为`hexo deploy`命令的简化，但是当安装了`hexo neodb`之后，就不能用`hexo d`了，因为`hexo neodb`跟`hexo deploy`
 的前缀都是`hexo d`。
-
-第一次使用 hexo neodb 时，后台会异步进行数据获取，一般需要等待一段时间（后台访问你的标记页面）才能查到数据。顺利情况下，平均一个页面会花10s。
-
-例如如果你有 150 个想读、150个已读、150个在读的图书，每页15条，则共需要翻30页。那么大约需要等待 30*10/60=5 分钟。如果长时间没有更新（一天以上），请及时提 issue 反馈。
-
-后续如果你的 neodb 数据更新了，hexo neodb 同样也会自动进行更新（同样需要等待一段时间才会查到更新数据），不过出于安全考虑，一个用户id**每半小时至多只会同步一次**。
-
-由于 neodb 本身深分页的 RT 过高（上万条目的翻页 RT 会到 15s 到 60s），为了防止系统同步压力过大，每个用户的每一类条目最多只会同步 1w 条。
 
 ## 升级
 
@@ -141,12 +133,9 @@ menu:
   Books: /books     #This is your books page
   Movies: /movies   #This is your movies page
   Games: /games   #This is your games page
-  Songs: /songs   #This is your songs page
+  Musics: /musics   #This is your musics page
+  TVs: /tvs   #This is your tvs page
 ```
-
-## 通用环境
-
-如果有非 hexo 环境的部署需求，则可以考虑以引入静态资源的方式接入 [ineodb](https://github.com/lesslsmore/ineodb) 。
 
 ## 免责声明
 
