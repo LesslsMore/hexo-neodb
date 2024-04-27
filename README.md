@@ -2,25 +2,25 @@
 
 一个在 [Hexo](https://hexo.io) 页面中嵌入 neodb 个人主页的小插件.
 
-[![package version](https://badge.fury.io/js/hexo-neodb.svg)](https://www.npmjs.com/package/hexo-neodb)
-[![npm](https://img.shields.io/npm/dt/hexo-neodb.svg)](https://www.npmjs.com/package/hexo-neodb)
-[![GitHub license](https://img.shields.io/github/license/lesslsmore/hexo-neodb.svg)](https://github.com/lesslsmore/hexo-neodb/blob/master/LICENSE)
+![](https://badge.fury.io/js/hexo-neodb.svg)  
+![](https://img.shields.io/npm/dt/hexo-neodb.svg)  
+![](https://img.shields.io/github/license/lesslsmore/hexo-neodb.svg)
 
-[![NPM](https://nodei.co/npm/hexo-neodb.png)](https://nodei.co/npm/hexo-neodb/)
+![](https://nodei.co/npm/hexo-neodb.png)
 
 ## 原理
 
-hexo-neodb 参考 https://github.com/mythsman/hexo-douban 开发
+hexo-neodb 参考 [https://github.com/mythsman/hexo-douban](https://github.com/mythsman/hexo-douban) 开发
 
 由于豆瓣评论被删，因此转战 [neodb](https://neodb.social/) 作为替代。
 
-neodb 支持豆瓣数据导入，开源并开放 api 
+neodb 支持豆瓣数据导入，开源并开放 api
 
-通过 https://neodb.social/developer/ 可生成 token 对 api 进行访问
+通过 [https://neodb.social/developer/](https://neodb.social/developer/) 可生成 token 对 api 进行访问
 
 ## 安装
 
-``` bash
+```shell
 $ npm install hexo-neodb --save
 ```
 
@@ -28,7 +28,7 @@ $ npm install hexo-neodb --save
 
 将下面的配置写入站点的配置文件 `_config.yml` 里(不是主题的配置文件).
 
-``` yaml
+```yml
 neodb:
   token: '填入之前生成的 token'
   builtin: false
@@ -60,7 +60,7 @@ neodb:
     title: 'This is my tv title'
     quote: 'This is my tv quote'
     option:
-  timeout: 10000 
+  timeout: 10000
 ```
 
 如果只想显示某一个页面(比如movie)，那就把其他的配置项注释掉即可。
@@ -69,7 +69,7 @@ neodb:
 
 **展示帮助文档**
 
-```
+```shell
 $ hexo neodb -h
 Usage: hexo neodb
 
@@ -90,7 +90,7 @@ Options:
 
 默认采用了 7890 端口代理访问，国内访问 api 不太顺畅
 
-```
+```shell
 $ hexo neodb
 INFO  Start processing
 INFO  0 (wishlist), 0 (progress),0 (complete) game loaded in 729 ms
@@ -106,7 +106,7 @@ INFO  Generated: tvs/index.html
 
 如果不加参数，那么默认参数为`-bgmst`。当然，前提是配置文件中均有这些类型的配置。
 
-**需要注意的是**，通常大家都喜欢用`hexo d`来作为`hexo deploy`命令的简化，但是当安装了`hexo neodb`之后，就不能用`hexo d`了，因为`hexo neodb`跟`hexo deploy`
+**需要注意的是**，通常大家都喜欢用`hexo d`来作为`hexo deploy`命令的简化，但是当安装了`hexo neodb`之后，就不能用`hexo d`了，因为`hexo neodb`跟`hexo deploy`  
 的前缀都是`hexo d`。
 
 ## 升级
@@ -126,7 +126,7 @@ INFO  Generated: tvs/index.html
 
 如果上面的显示没有问题就可以在主题的配置文件 `_config.yml` 里添加如下配置来为这些页面添加菜单链接.
 
-```yaml
+```yml
 menu:
   Home: /
   Archives: /archives
@@ -136,7 +136,11 @@ menu:
   Musics: /musics   #This is your musics page
   TVs: /tvs   #This is your tvs page
 ```
-
+## 他们在用
+下面列举了在不同 hexo 主题下使用插件后的渲染结果，仅供参考。
+如果您使用了本插件，也欢迎在 README.md 中提 PR 将您的网站添加进来，供后人参考。
+### [hexo-theme-butterfly](https://github.com/jerryc127/hexo-theme-butterfly)
+* https://lesslsmore.github.io/movies/
 ## 免责声明
 
 本项目仅供学习交流使用，不得用于任何商业用途。
@@ -148,11 +152,8 @@ menu:
 系统刚上线，可能还不够完善。如果大家在使用的过程中数据有问题、或者有什么问题和意见，欢迎随时提issue。
 
 如果你觉得这个插件很好用，欢迎右上角点下 star ⭐️，表达对作者的鼓励。
-
 ## Star History
-
-[![Stargazers over time](https://starchart.cc/lesslsmore/hexo-neodb.svg)](https://starchart.cc/lesslsmore/hexo-neodb)
-
+[![Stargazers over time](https://starchart.cc/LesslsMore/hexo-neodb.svg?variant=adaptive)](https://starchart.cc/LesslsMore/hexo-neodb)
 ## Lisense
 
 MIT
