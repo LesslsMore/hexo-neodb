@@ -1,17 +1,18 @@
 {
   "name": "hexo-neodb",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "Generate neodb pages of books, movies, tvs, musics and games for Hexo.",
   "main": "index",
   "scripts": {},
   "dependencies": {
+    "axios": "^1.6.8",
+    "diagnostics_channel": "^1.1.0",
     "ejs": "3.1.7",
     "hexo-fs": "4.1.1",
     "hexo-i18n": "1.0.0",
     "hexo-log": "3.2.0",
     "path": "^0.12.7",
-    "urllib": "^3.5.0",
-    "diagnostics_channel": "^1.1.0"
+    "urllib": "^3.5.0"
   },
   "repository": {
     "type": "git",
