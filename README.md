@@ -61,6 +61,10 @@ neodb:
     quote: 'This is my tv quote'
     option:
   timeout: 10000
+  proxy: #不使用代理注释或直接删除配置项即可
+    protocol: http
+    host: 127.0.0.1
+    port: 7897
 ```
 
 如果只想显示某一个页面(比如movie)，那就把其他的配置项注释掉即可。
